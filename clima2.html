@@ -6,9 +6,30 @@
 	<title>Clima</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css" TYPE="text/css" media="screen">
 	<link rel="stylesheet" href="css/clima.css" TYPE="text/css" media="screen"> 
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		var vars;
+		var temp_c;
+		var temp_f;
+		$.ajax({
+		    type: "GET",
+		   url: "http://api.openweathermap.org/data/2.5/weather?q=San Juan, PR&APPID=5868ac96f70e10a01988232b0ad6be8",
+		   dataType: "json",
+		   success: function (data) {
+		   	  debugger;
+		      vars = data.main;
+		      temp_c = vars.temp - 273.15;
+		      temp_f = 1.8 * (vars.temp - 273.15) + 32;
+		   },
+		   error: function (jqXHR, textStatus, errorThrown) {
+		      alert(errorThrown);
+		   }
+		});
+	</script>
 </head>
 	<body id="fondo">
 		<div class="container" >
+
 			<div class="row">
 				<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
 					<img src="logo.png">

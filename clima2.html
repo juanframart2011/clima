@@ -20,8 +20,6 @@
 	  			if (tecla==13) traer_clima();
 			});
 		})
-		
-		
 		function traer_clima(){
 			var ciudad=document.getElementById("text_nombre").value;
 			$.getJSON("css/icons.json",function(weatherIcons){
@@ -30,7 +28,6 @@
 					url: "http://api.openweathermap.org/data/2.5/weather?q="+ ciudad +",PR&APPID=45868ac96f70e10a01988232b0ad6be8&lang=es",
 					dataType: "json",
 					success: function (data) {
-						//debugger;
 						vars = data.main;
 						temp_c = vars.temp - 273.15;
 						today=data.weather[0].description;
@@ -39,6 +36,7 @@
 						fecha= new Date();
 						div = document.getElementById('txt_ciudad');
             			div.style.display = 'none';
+            			$(".hora_city").html(fecha.getHours() + ":" + fecha.getMinutes()+ "&#149;" + data.name);
 						$("#tiempo").html("El tiempo ahora");
 						$(".today_time").html(today);
 						$(".temp").html(temp_c +'&#176;');
@@ -90,7 +88,7 @@
 			<footer id="dos"> 
 				<div class="row">
 					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
-						<h3>23:24 &#149; San Salvador de Jujuy</h3>
+						<h3><span class="hora_city">00:00 &#149; Ciudad</span></h3>
 					</div>
 					<div class="col-xs-12  col-sm-6 col-md-6  col-lg-6  text-center">
 						<h3>www.openweather.org</h3>

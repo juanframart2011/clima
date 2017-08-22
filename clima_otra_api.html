@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Clima</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css" TYPE="text/css" media="screen"> 
+	<link rel="stylesheet" href="css/clima.css" TYPE="text/css" media="screen">
+	<link rel="stylesheet" href="css/weather-icons-master/css/weather-icons.css" TYPE="text/css" media="screen">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		var vars;
+		var temp_c;
+		var temp_f;
+		var prefix = 'wi wi-';
+		function traer_clima(){
+			$.getJSON("css/icons.json",function(weatherIcons){
+				$.ajax({
+					type: "GET",
+					url: "http://api.openweathermap.org/data/2.5/weather?q=CDMX, PR&APPID=45868ac96f70e10a01988232b0ad6be8&lang=es",
+					dataType: "json",
+					success: function (data) {
+						vars = data.main;
+						temp_c = vars.temp - 273.15;
+						temp_m = vars.temp_min - 273.15;
+						temp_mx = vars.temp_max - 273.15;
+						today=data.weather[0].description;
+						$(".max_temp").html(temp_mx);
+						$(".min_temp").html(temp_m);
+						$(".today_time").html(today);
+						var code = data.weather[0].id;
+						var icon = weatherIcons[code].icon;
+						
+						// If we are not in the ranges mentioned above, add a day/night prefix.
+						if (!(code > 699 && code < 800) && !(code > 899 && code < 1000)) {
+							icon = 'day-' + icon;
+						}
+
+						// Finally tack on the prefix.
+						icon = prefix + icon;
+						$(".icono_clima").html('<i style="font-size: 100px;" class="' + icon + '"></i>');
+						
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						alert(errorThrown);
+					}
+				});
+			});
+		}
+	</script>
+</head>
+<body onload="traer_clima();">
+	<div class="container" >
+		<div class="row">
+			<div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+				<img src="logo.png" class="img-responsive">
+
+			</div>
+		</div>
+		<div class="row" id="datos">
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-left text-center" id="bordes">
+				<p class="icono_clima"></p>
+				<h3>HOY</h3>
+				<h2><b class="today_time"></b></h2>
+				<h1><span class="max_temp"></span> &#176; <span class="min_temp"></span> &#176;</h1>
+				<h4>Min  Max </h4>
+			</div>
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-left text-center" id="bordes">
+				<p class="icono_clima"></p>
+				<h3>HOY</h3>
+				<h2><b class="today_time"></b></h2>
+				<h1><span class="max_temp"></span> &#176; <span class="min_temp"></span> &#176;</h1>
+				<h4>Min  Max </h4>
+			</div>
+			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-left text-center" id="bordes">
+				<p class="icono_clima"></p>
+				<h3>HOY</h3>
+				<h2><b class="today_time"></b></h2>
+				<h1><span class="max_temp"></span> &#176; <span class="min_temp"></span> &#176;</h1>
+				<h4>Min  Max </h4>
+			</div>
+			<footer> 
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 text-center">
+						<h3>23:24 &#149; San Salvador de Jujuy</h3>
+					</div>
+					<div class="col-xs-12  col-sm-6 col-md-6  col-lg-6  text-center">
+						<h3>www.openweather.org</h3>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+</body>
+</html>

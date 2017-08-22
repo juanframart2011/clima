@@ -6,49 +6,85 @@
 	<title>Clima</title>
 	<link rel="stylesheet" href="css/bootstrap.min.css" TYPE="text/css" media="screen">
 	<link rel="stylesheet" href="css/clima.css" TYPE="text/css" media="screen"> 
+	<link rel="stylesheet" href="css/weather-icons-master/css/weather-icons.css" TYPE="text/css" media="screen">
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script type="text/javascript">
 		var vars;
 		var temp_c;
 		var temp_f;
-		$.ajax({
-		    type: "GET",
-		   url: "http://api.openweathermap.org/data/2.5/weather?q=San Juan, PR&APPID=5868ac96f70e10a01988232b0ad6be8",
-		   dataType: "json",
-		   success: function (data) {
-		   	  debugger;
-		      vars = data.main;
-		      temp_c = vars.temp - 273.15;
-		      temp_f = 1.8 * (vars.temp - 273.15) + 32;
-		   },
-		   error: function (jqXHR, textStatus, errorThrown) {
-		      alert(errorThrown);
-		   }
-		});
+		var prefix = 'wi wi-';
+
+		$(document).ready(function(){
+			$("#text_nombre").keypress(function(e){
+				var tecla = (document.all) ? e.keyCode : e.which;
+	  			if (tecla==13) traer_clima();
+			});
+		})
+		
+		
+		function traer_clima(){
+			var ciudad=document.getElementById("text_nombre").value;
+			$.getJSON("css/icons.json",function(weatherIcons){
+				$.ajax({
+					type: "GET",
+					url: "http://api.openweathermap.org/data/2.5/weather?q="+ ciudad +",PR&APPID=45868ac96f70e10a01988232b0ad6be8&lang=es",
+					dataType: "json",
+					success: function (data) {
+						//debugger;
+						vars = data.main;
+						temp_c = vars.temp - 273.15;
+						today=data.weather[0].description;
+						var meses = new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+						var diasSemana = new Array("Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado");
+						fecha= new Date();
+						div = document.getElementById('txt_ciudad');
+            			div.style.display = 'none';
+						$("#tiempo").html("El tiempo ahora");
+						$(".today_time").html(today);
+						$(".temp").html(temp_c +'&#176;');
+						$(".fecha").html(diasSemana[fecha.getDay()] + ", " + fecha.getDate() + " de " + meses[fecha.getMonth()] + " de " + fecha.getFullYear());
+						var code = data.weather[0].id;
+						var icon = weatherIcons[code].icon;
+						// If we are not in the ranges mentioned above, add a day/night prefix.
+						if (!(code > 699 && code < 800) && !(code > 899 && code < 1000)) {
+							icon = 'day-' + icon;
+						}
+						// Finally tack on the prefix.
+						icon = prefix + icon;
+						$(".icono_clima").html('<i style="font-size: 80px;" class="' + icon + '"></i>');
+					},
+					error: function (jqXHR, textStatus, errorThrown) {
+						console.log(errorThrown);
+					}
+				});
+			});
+		}
 	</script>
 </head>
 	<body id="fondo">
-		<div class="container" >
-
+		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
 					<img src="logo.png">
 				</div>
+			</div>
+			<div class="row" id="txt_ciudad">
 				<div  class="col-xs-12 col-sm-4 col-sm-offset-6 col-md-4 col-md-offset-6 col-lg-4 col-lg-offset-6">
-					<form class="form-inline" id="cuadro">
+					<div class="form-inline" id="cuadro">
 						<div class="form-group">
-						    <label for="exampleInputEmail1">Nombre</label>
-						    <input type="text" class="form-control" id="text_nombre" placeholder="Tu nombre">
+						    <label><h1>Ciudad</h1></label>
+						    <input type="text" class="form-control" id="text_nombre" placeholder="Nombre de Ciudad">
 						</div>
-					</form>
+					</div>
 				</div>
 			</div>
 			<div class="row" id="letras">
-				<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 text-left">
-					<h1>Lunes 14, Agosto 2017</h1>
-					<h1 id="tiempo">El tiempo ahora</h1>
-					<b><h1 id="cielo">Cielo Despejado</h1></b>
-					<h1 id="grados">12.0 &#176;</h1>
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-left">
+					<h1 class="fecha"></h1>
+					<h1 id="tiempo"></h1>
+					<p class="icono_clima"></p>
+					<h1 id="cielo"><b class="today_time"></b></h1>
+					<h1 id="grados"><span class="temp"></span></h1>
 				</div>
 			</div>
 			<footer id="dos"> 

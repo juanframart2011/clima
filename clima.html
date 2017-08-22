@@ -13,11 +13,11 @@
 		var temp_c;
 		var temp_f;
 		var prefix = 'wi wi-';
-		function trar_clima(){
+		function traer_clima(){
 			$.getJSON("css/icons.json",function(weatherIcons){
 				$.ajax({
 					type: "GET",
-					url: "http://api.openweathermap.org/data/2.5/weather?q=Cartagena, PR&APPID=45868ac96f70e10a01988232b0ad6be8&lang=es",
+					url: "http://api.openweathermap.org/data/2.5/weather?q=CDMX, PR&APPID=45868ac96f70e10a01988232b0ad6be8&lang=es",
 					dataType: "json",
 					success: function (data) {
 						vars = data.main;
@@ -49,7 +49,7 @@
 		}
 	</script>
 </head>
-<body onload="trar_clima();">
+<body onload="traer_clima();">
 	<div class="container" >
 		<div class="row">
 			<div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">

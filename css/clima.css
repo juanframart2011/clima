@@ -23,31 +23,47 @@ footer{
 #dos{
 	background-color: #5a2b73;
 }
+#txt_ciudad{
+	position: absolute;
+	/*nos posicionamos en el centro del navegador*/
+	top:45%;
+	left:35%;
+	/*determinamos una anchura*/
+	width:250px;
+	/*indicamos que el margen izquierdo, es la mitad de la anchura*/
+	margin-left:-200px;
+	/*determinamos una altura*/
+	height:300px;
+	/*indicamos que el margen superior, es la mitad de la altura*/
+	margin-top:-150px;
+	padding:5px;
+}
+/*#cuadro{
+	margin-top:5px;
+}
+#letras{
+	margin-top:70px;
+}
+#pie{
+ 	margin:50px;
+}*/
 
-	#cuadro{
-			margin-top:10px;
-		}
-		#letras{
-			margin-top:100px;
-		}
-		#pie{
-		 	margin:60px;
-		}
-		#tiempo{
-			font-size: 40px;
-		}
-		#cielo{
-			font-size: 60px;
-		}
-		#grados{
-			font-size: 120px;
-		}
 #text_nombre{
 	background: none;
 	color:white;
-	width: 200px;
-    height: 40px;
+	width: 350px;
+    height: 60px;
     border-top: none;
     border-left: none;
     border-right: none; 
+    font-size: 30px;
+}
+#tiempo{
+	font-size: 40px;
+}
+#cielo{
+	font-size: 60px;
+}
+#grados{
+	font-size: 120px;
 }

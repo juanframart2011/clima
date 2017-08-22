@@ -1,0 +1,53 @@
+.img-responsive{
+	margin: 0 auto;
+}
+body{
+	background-color: #13abdc;
+	color:white;
+}
+#fondo{
+	background-color: #5a2b73;
+}
+#datos{
+	margin-top:100px;
+}
+#bordes{
+	border-right:solid 1px white;
+}
+footer{
+	background-color: #13abdc;
+	bottom: 0%;
+    position: fixed;
+    width: 100%;
+}
+#dos{
+	background-color: #5a2b73;
+}
+
+	#cuadro{
+			margin-top:10px;
+		}
+		#letras{
+			margin-top:100px;
+		}
+		#pie{
+		 	margin:60px;
+		}
+		#tiempo{
+			font-size: 40px;
+		}
+		#cielo{
+			font-size: 60px;
+		}
+		#grados{
+			font-size: 120px;
+		}
+#text_nombre{
+	background: none;
+	color:white;
+	width: 200px;
+    height: 40px;
+    border-top: none;
+    border-left: none;
+    border-right: none; 
+}

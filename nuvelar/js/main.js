@@ -120,24 +120,13 @@ Weather = (function(){
         return str.replace(new RegExp(find, 'g'), replace);
     }
 
-    function pInit(city, autoCity, isPreview){
-
-        var cityAux = replaceAll('Partido', '', decodeURIComponent(city.replace(/\+/g,  " ")));
-        cityAux = replaceAll('Province', '', cityAux);
-        var c = cityAux.split(',');
-        if (c.length < 3) {
-            cityAux = replaceAll('%20', '+', c[0]).latinise() + ',' + c[1].latinise();
-        }
-        else cityAux = replaceAll('%20', '+', c[0]).latinise() + ',' + c[2].latinise();
-
-        cityAux = encodeURI(cityAux);
-
+    function pInit(city){
+        
         settings = {
-            urlWeather : "http://api.openweathermap.org/data/2.5/weather?q=" + cityAux + "&lang="+ LanguageManager.getLangPrefix() +"&units=metric",
-            urlForecast : "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + cityAux + "&lang="+LanguageManager.getLangPrefix()+"&units=metric&cnt=4",
-            isPreview: isPreview
+            urlWeather : "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&lang=es",
+            urlForecast : "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "&lang=es",
+            isPreview: true
         };
-
         ciudad = city;
 
         consultWeatherData();
@@ -364,7 +353,7 @@ Weather = (function(){
         var dateTime = new Date();
         $('.date').html(formatDate(dateTime));
         $('.description').html(description[data.weather[0].id]);
-        $(".content-degrees p").html(roundTemperature(data.main.temp));
+        $(".content-degrees p").html(roundTemperature(data.main.temp - 273.15));
 
         bodyClassToday = getBodyClass(data.weather[0].icon);
         $('body').addClass(bodyClassToday+' animated fadeIn');
@@ -458,8 +447,8 @@ Weather = (function(){
                 $('#bigIcon').find('.svg-'+getIconWeatherPath(data.list[day].weather[0].icon)).clone().appendTo($('#forecast-image-' + day)).addClass('climacon-visible').attr('id','svg-forecast-' + day);
                 $('#forecast-day-' + day).html(getDayName(date));
                 $('#forecast-description-' + day).html(description[data.list[day].weather[0].id]);
-                $('#forecast-temperature-min-' + day).html(roundTemperature(data.list[day].temp.min));
-                $('#forecast-temperature-max-' + day).html(roundTemperature(data.list[day].temp.max));
+                $('#forecast-temperature-min-' + day).html(roundTemperature(data.list[day].temp.min- 273.15));
+                $('#forecast-temperature-max-' + day).html(roundTemperature(data.list[day].temp.max- 273.15));
 
             }
         }
@@ -523,20 +512,9 @@ Weather = (function(){
         return day[date.getDay()];
     }
 
-    function getLocation(callBack) {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(callBack);
-        } else {
-            //console.log("Geolocation is not supported by this browser.");
-        }
-    }
-    function showPosition(position) {
-        latLong = "lat=" + position.coords.latitude + "&lon=" + position.coords.longitude;
-    }
+    function init(city){
 
-    function init(city, autoCity,isPreview,language){
-
-        LanguageManager.init(language,function(langObj){
+        LanguageManager.init('es',function(langObj){
 
             description = langObj["description"];
             month = langObj["month"];
@@ -550,7 +528,7 @@ Weather = (function(){
                 }
             }
 
-            pInit(city, autoCity,isPreview);
+            pInit(city);
         });
 
     }
@@ -593,25 +571,18 @@ var contentToday = $('.content-today');
 var contentExtended = $('.content-extended');
 
 $(document).ready(function(){
-
-    console.info( "acdA" );
+    
+    
     var $pantalla = $(window),
         $ancho_pantalla = $pantalla.width(),
         $alto_pantalla = $pantalla.height(),
         $main_color = $('body').attr('data-main-color');
 
-    console.log( location.search );
 
     if ($pantalla.width() > $pantalla.height()) { $('body').css('zoom',parseFloat($alto_pantalla*100/1080)+'%');}
     else { $('body').css('zoom',parseFloat($ancho_pantalla*100/1080)+'%'); }
    
-    var d = decodeURIComponent(location.search);
-    console.log( d );
-    console.log( location.search );
-    d = d.replace('?data=', '');
-    d = JSON.parse(d);
-
-    Weather.init(d.city || '', d.autoCity || false, d.isPreview, d.language || "es");
+    Weather.init("Buenos Aires");
     setTimeout(function(){
         show();
     }, 700);

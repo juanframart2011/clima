@@ -142,9 +142,7 @@ Weather = (function(){
 
         consultWeatherData();
         consultForecastData();
-    
-
-        //Inicia el reloj
+    //Inicia el reloj
         time = setInterval(clock, 1000);
     }
 
@@ -593,16 +591,23 @@ var bodyClassToday;
 var bodyClassExtended; 
 var contentToday = $('.content-today');
 var contentExtended = $('.content-extended');
+
 $(document).ready(function(){
+
+    console.info( "acdA" );
     var $pantalla = $(window),
         $ancho_pantalla = $pantalla.width(),
         $alto_pantalla = $pantalla.height(),
         $main_color = $('body').attr('data-main-color');
 
+    console.log( location.search );
+
     if ($pantalla.width() > $pantalla.height()) { $('body').css('zoom',parseFloat($alto_pantalla*100/1080)+'%');}
     else { $('body').css('zoom',parseFloat($ancho_pantalla*100/1080)+'%'); }
    
     var d = decodeURIComponent(location.search);
+    console.log( d );
+    console.log( location.search );
     d = d.replace('?data=', '');
     d = JSON.parse(d);
 

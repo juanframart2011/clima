@@ -13,22 +13,25 @@
 		var temp_c;
 		var temp_f;
 		var prefix = 'wi wi-';
+		var prefix_2 = 'wi wi-';
 		function traer_clima(){
 			$.getJSON("css/icons.json",function(weatherIcons){
 				$.ajax({
 					type: "GET",
-					url: "http://api.openweathermap.org/data/2.5/weather?q=CDMX, PR&APPID=45868ac96f70e10a01988232b0ad6be8&lang=es",
+					url: "http://api.openweathermap.org/data/2.5/forecast?q=CDMX, PR&APPID=45868ac96f70e10a01988232b0ad6be8&lang=es",
 					dataType: "json",
 					success: function (data) {
-						vars = data.main;
-						temp_c = vars.temp - 273.15;
-						temp_m = vars.temp_min - 273.15;
-						temp_mx = vars.temp_max - 273.15;
-						today=data.weather[0].description;
-						$(".max_temp").html(temp_mx);
-						$(".min_temp").html(temp_m);
-						$(".today_time").html(today);
-						var code = data.weather[0].id;
+						
+						vars = data.list[5];
+						//console.log(vars.dt_txt);
+						
+						temp_c = vars.main.temp - 273.15;
+						temp_m = vars.main.temp_min - 273.15;
+						temp_mx = vars.main.temp_max - 273.15;
+						$(".max_temp").html(temp_mx.toFixed(2));
+						$(".min_temp").html(temp_m.toFixed(2));
+						$(".today_time").html(data.list[5].weather[0].description);
+						var code = data.list[5].weather[0].id;
 						var icon = weatherIcons[code].icon;
 						
 						// If we are not in the ranges mentioned above, add a day/night prefix.
@@ -39,14 +42,31 @@
 						// Finally tack on the prefix.
 						icon = prefix + icon;
 						$(".icono_clima").html('<i style="font-size: 100px;" class="' + icon + '"></i>');
+						/**/
+						vars_2 = data.list[10];
+						temp_c_2=vars_2.main.temp - 273.15;
+						temp_f_2=vars_2.main.temp_min - 273.15;
+						$(".max_temp_2").html(temp_c_2.toFixed(2));
+						$(".min_temp_2").html(temp_f_2.toFixed(2));
+						$(".today_time_2").html(data.list[10].weather[0].description);
+						var code_2 = data.list[10].weather[0].id;
+						var icon_2 = weatherIcons[code_2].icon;
 						
+						// If we are not in the ranges mentioned above, add a day/night prefix.
+						if (!(code_2 > 699 && code_2 < 800) && !(code_2 > 899 && code_2 < 1000)) {
+							icon_2 = 'day-' + icon_2;
+						}
+
+						// Finally tack on the prefix.
+						icon_2 = prefix_2 + icon_2;
+						$(".icono_clima").html('<i style="font-size: 100px;" class="' + icon_2 + '"></i>');
 					},
 					error: function (jqXHR, textStatus, errorThrown) {
 						alert(errorThrown);
 					}
 				});
 			});
-		}
+			}
 	</script>
 </head>
 <body onload="traer_clima();">
@@ -60,21 +80,21 @@
 		<div class="row" id="datos">
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-left text-center" id="bordes">
 				<p class="icono_clima"></p>
-				<h3>HOY</h3>
+				<h3>MAÑANA</h3>
 				<h2><b class="today_time"></b></h2>
 				<h1><span class="max_temp"></span> &#176; <span class="min_temp"></span> &#176;</h1>
 				<h4>Min  Max </h4>
 			</div>
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-left text-center" id="bordes">
-				<p class="icono_clima"></p>
-				<h3>HOY</h3>
-				<h2><b class="today_time"></b></h2>
-				<h1><span class="max_temp"></span> &#176; <span class="min_temp"></span> &#176;</h1>
+				<p class="icono_clima_2"></p>
+				<h3>PASADO</h3>
+				<h2><b class="today_time_2"></b></h2>
+				<h1><span class="max_temp_2"></span> &#176; <span class="min_temp_2"></span> &#176;</h1>
 				<h4>Min  Max </h4>
 			</div>
 			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 text-left text-center" id="bordes">
 				<p class="icono_clima"></p>
-				<h3>HOY</h3>
+				<h3>TRASPASADO</h3>
 				<h2><b class="today_time"></b></h2>
 				<h1><span class="max_temp"></span> &#176; <span class="min_temp"></span> &#176;</h1>
 				<h4>Min  Max </h4>

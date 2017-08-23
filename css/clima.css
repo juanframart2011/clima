@@ -38,15 +38,12 @@ footer{
 	margin-top:-150px;
 	padding:5px;
 }
-/*#cuadro{
-	margin-top:5px;
+.form-control:focus {
+    border-color:inherit !important;
+    outline: 0;
+    -webkit-box-shadow:inherit !important;
+    box-shadow:inherit !important;
 }
-#letras{
-	margin-top:70px;
-}
-#pie{
- 	margin:50px;
-}*/
 
 #text_nombre{
 	background: none;

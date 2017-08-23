@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather</title>
+    <link href="css/normalize.css" rel="stylesheet" type="text/css">
+    <link href="css/animate.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="content-resource">
+        <div class="header">
+            <div class="logo"></div>
+        </div>
+
+        <div class="displaynone" id="bigIcon">
+            <object type="image/svg+xml" data="svg/svgs/cloud.svg" class="climacon svg-cloud"></object>
+            <object type="image/svg+xml" data="svg/svgs/cloudDrizzleMoon.svg" class="climacon svg-cloudDrizzleMoon"></object>
+            <object type="image/svg+xml" data="svg/svgs/cloudDrizzleSun.svg" class="climacon svg-cloudDrizzleSun"></object>
+            <object type="image/svg+xml" data="svg/svgs/cloudFogMoon.svg" class="climacon svg-cloudFogMoon"></object>
+            <object type="image/svg+xml" data="svg/svgs/cloudFogSun.svg" class="climacon svg-cloudFogSun"></object>
+            <object type="image/svg+xml" data="svg/svgs/cloudLightning.svg" class="climacon svg-cloudLightning"></object>
+            <object type="image/svg+xml" data="svg/svgs/cloudMoon.svg" class="climacon svg-cloudMoon"></object>
+            <object type="image/svg+xml" data="svg/svgs/cloudRainMoon.svg" class="climacon svg-cloudRainMoon"></object>
+            <object type="image/svg+xml" data="svg/svgs/cloudRainSun.svg" class="climacon svg-cloudRainSun"></object>
+            <object type="image/svg+xml" data="svg/svgs/cloudSnow.svg" class="climacon svg-cloudSnow"></object>
+            <object type="image/svg+xml" data="svg/svgs/cloudSun.svg" class="climacon svg-cloudSun"></object>
+            <object type="image/svg+xml" data="svg/svgs/moon.svg" class="climacon svg-moon"></object>
+            <object type="image/svg+xml" data="svg/svgs/sun.svg" class="climacon svg-sun"></object>
+        </div>
+
+        <div class="content content-today">
+            <div class="content-data">
+                <p class="date"></p>
+                <p class="now" id="time_now">El tiempo ahora</p>
+                <p class="description"></p>
+            </div>
+            <div class="content-degrees">
+                <p></p>
+                <span>°C</span>
+            </div>
+            <p class="show-only-portrait pull-left open-portrait">www.openweather.org</p>
+        </div>
+
+        <div class="content content-extended">
+            <div class="day day-1">
+                <div class="svg" id="forecast-image-1">
+                    
+                </div>
+                <p class="extended-name" id="forecast-day-1"></p>
+                <p class="extended-status" id="forecast-description-1"></p>
+                <div class="extended-data extended-min">
+                    <p class="extended-degrees extended-degrees-min" id="forecast-temperature-min-1"></p><span>°</span>
+                    <div class="clearfix"></div>
+                    <p class="extended-type extended-min-text">MIN</p>
+                </div>
+                <div class="extended-data extended-max">
+                    <p class="extended-degrees extended-degrees-max" id="forecast-temperature-max-1"></p><span>°</span>
+                    <div class="clearfix"></div>
+                    <p class="extended-type">MAX</p>
+                </div>
+            </div>
+            <div class="day day-2">
+                <div class="svg" id="forecast-image-2">
+                    
+                </div>
+                <p class="extended-name" id="forecast-day-2"></p>
+                <p class="extended-status" id="forecast-description-2"></p>
+                <div class="extended-data extended-min">
+                    <p class="extended-degrees extended-degrees-min" id="forecast-temperature-min-2"></p><span>°</span>
+                    <div class="clearfix"></div>
+                    <p class="extended-type extended-min-text">MIN</p>
+                </div>
+                <div class="extended-data extended-max">
+                    <p class="extended-degrees extended-degrees-max" id="forecast-temperature-max-2"></p><span>°</span>
+                    <div class="clearfix"></div>
+                    <p class="extended-type">MAX</p>
+                </div>
+            </div>
+            <div class="day day-3 day-last day-hidden-portrait">
+                <div class="svg" id="forecast-image-3">
+                    
+                </div>
+                <p class="extended-name" id="forecast-day-3"></p>
+                <p class="extended-status" id="forecast-description-3"></p>
+                <div class="extended-data extended-min">
+                    <p class="extended-degrees extended-degrees-min" id="forecast-temperature-min-3"></p><span>°</span>
+                    <div class="clearfix"></div>
+                    <p class="extended-type extended-min-text">MIN</p>
+                </div>
+                <div class="extended-data extended-max">
+                    <p class="extended-degrees extended-degrees-max" id="forecast-temperature-max-3"></p><span>°</span>
+                    <div class="clearfix"></div>
+                    <p class="extended-type">MAX</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="pull-left">
+                <p class="time"></p> <p class="city"></p>
+            </div>
+            <div class="pull-right">
+                <p class="show-only-landscape open-landscape">www.openweather.org</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/vendor/jquery-2.0.3.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

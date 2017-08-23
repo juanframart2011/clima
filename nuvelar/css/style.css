@@ -1,0 +1,379 @@
+.pull-left{
+	float: left;
+}
+.pull-right{
+	float: right;
+}
+.show-only-portrait{
+	display: none;
+}
+.displaynone{
+	display: none !important;
+}
+.displayblock{
+	display: block;
+}
+.clearfix{
+	clear: both;
+}
+@font-face {
+    font-family: 'Roboto';  
+    src: url(fonts/Roboto-Regular.ttf), url(../../../fonts/Roboto-Regular.eot); 
+}
+@font-face {
+    font-family: 'RobotoLight';  
+    src: url(fonts/Roboto-Light.ttf), url(../../../fonts/Roboto-Light.eot); 
+}
+@font-face {
+    font-family: 'RobotoBold';  
+    src: url(fonts/Roboto-Bold.ttf), url(../../../fonts/Roboto-Bold.eot); 
+}
+@font-face {
+    font-family: 'RobotoThin';  
+    src: url(fonts/Roboto-Thin.ttf); 
+}
+@font-face {
+    font-family: 'RobotoMedium';  
+    src: url(fonts/Roboto-Medium.ttf); 
+}
+.animated{
+	visibility: visible !important;
+}
+html, body{
+	height: 100%;
+	margin: 0px;
+	padding: 0px;
+	overflow: hidden;
+}
+body{
+	visibility: hidden;
+	background: #fff;
+	/*background: rgba(0,2,44,1);
+	background: url(../img/o2.png) repeat, -moz-linear-gradient(top, rgba(0,2,44,1) 0%, rgba(0,151,201,1) 100%);
+	background: url(../img/o2.png) repeat, -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,2,44,1)), color-stop(100%, rgba(0,151,201,1)));
+	background: url(../img/o2.png) repeat, -webkit-linear-gradient(top, rgba(0,2,44,1) 0%, rgba(0,151,201,1) 100%);
+	background: url(../img/o2.png) repeat, -o-linear-gradient(top, rgba(0,2,44,1) 0%, rgba(0,151,201,1) 100%);
+	background: url(../img/o2.png) repeat, -ms-linear-gradient(top, rgba(0,2,44,1) 0%, rgba(0,151,201,1) 100%);
+	background: url(../img/o2.png) repeat, linear-gradient(to bottom, rgba(0,2,44,1) 0%, rgba(0,151,201,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00022c', endColorstr='#0097c9', GradientType=0 );*/
+	padding-left: 9.5%;
+	padding-right: 9.5%;
+	color: #fff;
+	font-size: 25px;
+	font-family: Roboto;
+	transition: background 1s ease;
+}
+
+/*COLORES DE FONDO SEGUN ESTADO*/
+body.despejado_dia{
+	background: #13acdc;
+}
+body.despejado_noche{
+	background: #5b2c73;
+}
+body.parcial_nublado_dia{
+	background: #659eba;
+}
+body.parcial_nublado_noche{
+	background: #344d59;
+}
+body.nublado{
+	background: #659eba;
+}
+body.llovizna_dia{
+	background: #659eba;
+}
+body.llovizna_noche{
+	background: #344d59;
+}
+body.lluvia_dia{
+	background: #277194;
+}
+body.lluvia_noche{
+	background: #344d59;
+}
+body.tormenta{
+	background: #0c4159;
+}
+body.nieve{
+	background: #cdf4ff;
+	color: #006987;
+}
+body.niebla_dia{
+	background: #cdf4ff;
+	color: #006987;	
+}
+body.niebla_noche{
+	background: #57676c;
+}
+/*FIN COLORES DE FONDO SEGUN ESTADO*/
+.content-resource{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.content-resource .content{
+    position: absolute;
+    height: 270px;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    width: 100%;
+}
+.content-resource .content.content-extended{
+	height: 605px;
+}
+.header{
+	position: absolute;
+	top: 0px;
+	padding-top: 8.5%;
+}
+.logo{
+	width: 186px;
+	height: 38px;
+	background-size: contain;
+	background-image: url(../img/logo_nuvelar.png);
+}
+body.nieve .logo,body.niebla_dia .logo{
+	background-image: url(../img/logo_nuvelar_dark.png);
+}
+.logo,.city,.time,.open-landscape{
+	visibility: hidden;
+}
+.footer{
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	padding-bottom: 8.5%;
+	font-size: 1.2em;
+}
+.footer p{
+	margin: 0px;
+	float: left;
+}
+.footer p.time{
+	font-family: RobotoBold;
+}
+.footer p.ampm{
+	margin-left: 5px;
+}
+.footer p.city{
+	background-image: url(../img/ellipse.png);
+	background-position: left center;
+	background-repeat: no-repeat;
+	padding-left: 20px;
+	margin-left: 10px;
+}
+body.nieve .footer p.city,body.niebla_dia .footer p.city{
+	background-image: url(../img/ellipse_dark.png);
+}
+
+/*CLIMA DE UN DIA*/
+.content-today{
+	font-size: 21px;
+}
+.content-data,.content-degrees{
+	float: left;
+}
+.content-degrees{
+	margin-left: 50px;
+}
+.content-data p,.content-degrees p{
+	margin: 0px;
+}
+.content-data p.date{
+	font-size: 1.5em;
+	line-height: 1.6em;
+	padding-top: 20px;
+}
+.content-data p.now{
+	font-size: 3.5em;
+	font-family: RobotoLight;
+	line-height: 1.1em;
+}
+.content-data p.description{
+	font-size: 3.5em;
+	font-family: RobotoBold;
+	line-height: 1em;
+}
+.content-degrees p{
+	font-size: 16.5em;
+    font-family: RobotoBold;
+    float: left;
+    line-height: 0.7em;
+    letter-spacing: -15px;
+}
+.content-degrees span{
+	font-size: 6em;
+	float: left;
+	line-height: 1em;
+	font-family: RobotoThin;
+}
+.date,.now,.description,.content-degrees{
+	visibility: hidden;
+}
+/*fin clima de un dia*/
+
+/*CLIMA EXTENDIDO*/
+.day{
+	float: left;
+    width: 28%;
+    padding: 4% 2% 4% 4%;
+    position: relative;
+}
+.day-1{
+	padding-left: 0%;
+    width: 30%;
+    padding-right: 2%;
+}
+.day-2{
+	width: 30%;
+    padding-left: 4%;
+}
+.day-3{
+	padding: 4% 0% 4% 4%;
+    width: 28%;
+}
+.day:after{
+	width: 1px;
+	height: 100%;
+	background-color: #fff;
+	position: absolute;
+	left: 99.9%;
+	top: 0px;
+	content: "";
+	opacity: 0;
+	transition: opacity 0.5s;
+}
+body.niebla_dia .day:after, body.nieve .day:after{
+	background-color: #006987;
+}
+.day-1.day-bars:after{
+	transition-delay: 0.5s;
+}
+.day-2.day-bars:after{
+	transition-delay: 0.9s;
+}
+.day-bars:after{
+	opacity: 1;
+}
+.day-last:after{
+	width: 0px;
+	display: none;
+}
+.day .svg object{
+	height: 225px;
+	text-align: center;
+	width: 100%;
+}
+.day .svg{
+	margin-bottom: 40px;
+}
+.day .svg object svg{
+	float: none;
+	margin: 0px auto;
+}
+.content-extended p{
+	margin: 0px;
+}
+.extended-name{
+	text-transform: uppercase;
+	margin: 0px;
+}
+.extended-data p,.extended-data span{
+	float: left;
+}
+.extended-data{
+	float: left;
+	width: 50%;
+}
+.extended-name{
+	font-size: 1.5em;
+	font-family: RobotoLight;
+	line-height: 1em;
+}
+.extended-status{
+	font-family: RobotoBold;
+	font-size: 1.7em;
+}
+.extended-degrees{
+	font-size: 3.2em;
+    font-family: RobotoLight;
+    line-height: 1em;
+}
+.extended-data span{
+	font-size: 3em;
+	line-height: 1em;
+	font-family: RobotoLight;
+}
+.extended-type{
+	font-size: 1.2em;
+}
+.extended-min-text{
+	font-family: RobotoLight;
+}
+.extended-max .extended-type{
+	font-family: RobotoMedium;
+}
+.svg,.extended-name,.extended-status,.extended-data,.open-portrait{
+	visibility: hidden;
+}
+/*FIN CLIMA EXTENDIDO*/
+
+/*ESTADOS SVG*/
+.day .svg object.svg-175{
+	height: 175px !important;
+    margin: 25px 0px;
+}
+
+
+@media all and (orientation:portrait) { 
+	.show-only-portrait{
+		display: block;
+	}
+	.show-only-landscape{
+		display: none;
+	}
+	.header{
+		padding-top: 15%;
+	}
+	.footer{
+		padding-bottom: 15%;
+	}	
+	.content-resource .content{
+		height: 650px;
+	}
+	.content-resource .content.content-extended{
+		height: 1100px;
+	}
+	.content-data{
+		width: 100%;
+	}
+	.content-degrees{
+		margin-left: 0px;
+		margin-top: 60px;
+	}
+	.open-portrait{
+		margin-top: 55px;
+	    font-size: 1.6em;
+	    float: left;
+	    margin-left: 12px;
+	}
+	.day-last{
+		display: none;
+	}
+	.day{
+		width: 50%;
+	    padding: 4% 0%;
+	    clear: both;
+	}
+	.day:after{
+		width: 0px;
+		display: none;
+	}
+	.day .svg object{
+		width: auto
+	}
+}

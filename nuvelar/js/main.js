@@ -147,7 +147,7 @@ Weather = (function(){
     }
 
     function getDirection(angle){
-        angle = parseFloat(angle);
+        angle = parseFloat(angle);//A
 
         cardinalDirections = {
             'norte' : [0, 22.5],

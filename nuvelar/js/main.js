@@ -122,45 +122,27 @@ Weather = (function(){
 
     function pInit(city, autoCity, isPreview){
 
-        if (autoCity){
-            getLocation(function(position){
-                var latLong = "lat=" + position.coords.latitude.toFixed(4) + "&lon=" + position.coords.longitude.toFixed(4);
-
-
-                settings = {
-                    urlWeather : "http://api.openweathermap.org/data/2.5/weather?" + latLong + "&lang="+LanguageManager.getLangPrefix()+"&units=metric",
-                    urlForecast : "http://api.openweathermap.org/data/2.5/forecast/daily?" + latLong + "&lang="+LanguageManager.getLangPrefix()+"&units=metric&cnt=4",
-                    isPreview: isPreview
-                };
-
-                ciudad = latLong;
-
-                consultWeatherData();
-                consultForecastData();
-            });
+        
+        var cityAux = replaceAll('Partido', '', decodeURIComponent(city.replace(/\+/g,  " ")));
+        cityAux = replaceAll('Province', '', cityAux);
+        var c = cityAux.split(',');
+        if (c.length < 3) {
+            cityAux = replaceAll('%20', '+', c[0]).latinise() + ',' + c[1].latinise();
         }
-        else{
-            var cityAux = replaceAll('Partido', '', decodeURIComponent(city.replace(/\+/g,  " ")));
-            cityAux = replaceAll('Province', '', cityAux);
-            var c = cityAux.split(',');
-            if (c.length < 3) {
-                cityAux = replaceAll('%20', '+', c[0]).latinise() + ',' + c[1].latinise();
-            }
-            else cityAux = replaceAll('%20', '+', c[0]).latinise() + ',' + c[2].latinise();
+        else cityAux = replaceAll('%20', '+', c[0]).latinise() + ',' + c[2].latinise();
 
-            cityAux = encodeURI(cityAux);
+        cityAux = encodeURI(cityAux);
 
-            settings = {
-                urlWeather : "http://api.openweathermap.org/data/2.5/weather?q=" + cityAux + "&lang="+ LanguageManager.getLangPrefix() +"&units=metric",
-                urlForecast : "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + cityAux + "&lang="+LanguageManager.getLangPrefix()+"&units=metric&cnt=4",
-                isPreview: isPreview
-            };
+        settings = {
+            urlWeather : "http://api.openweathermap.org/data/2.5/weather?q=" + cityAux + "&lang="+ LanguageManager.getLangPrefix() +"&units=metric",
+            urlForecast : "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + cityAux + "&lang="+LanguageManager.getLangPrefix()+"&units=metric&cnt=4",
+            isPreview: isPreview
+        };
 
-            ciudad = city;
+        ciudad = city;
 
-            consultWeatherData();
-            consultForecastData();
-        }
+        consultWeatherData();
+        consultForecastData();
 
         //Inicia el reloj
         time = setInterval(clock, 1000);
@@ -611,16 +593,23 @@ var bodyClassToday;
 var bodyClassExtended; 
 var contentToday = $('.content-today');
 var contentExtended = $('.content-extended');
+
 $(document).ready(function(){
+
+    console.info( "acdA" );
     var $pantalla = $(window),
         $ancho_pantalla = $pantalla.width(),
         $alto_pantalla = $pantalla.height(),
         $main_color = $('body').attr('data-main-color');
 
+    console.log( location.search );
+
     if ($pantalla.width() > $pantalla.height()) { $('body').css('zoom',parseFloat($alto_pantalla*100/1080)+'%');}
     else { $('body').css('zoom',parseFloat($ancho_pantalla*100/1080)+'%'); }
    
     var d = decodeURIComponent(location.search);
+    console.log( d );
+    console.log( location.search );
     d = d.replace('?data=', '');
     d = JSON.parse(d);
 

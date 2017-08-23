@@ -582,7 +582,14 @@ $(document).ready(function(){
     if ($pantalla.width() > $pantalla.height()) { $('body').css('zoom',parseFloat($alto_pantalla*100/1080)+'%');}
     else { $('body').css('zoom',parseFloat($ancho_pantalla*100/1080)+'%'); }
    
-    Weather.init("Buenos Aires");
+    
+    var d = decodeURIComponent(location.search);
+    d = d.replace('?city=', '');
+    d = JSON.parse(d);/*
+    debugger;
+    Weather.init(d.city || '', d.autoCity || false, d.isPreview, d.language || "es");
+    */
+    Weather.init(d);
     setTimeout(function(){
         show();
     }, 700);

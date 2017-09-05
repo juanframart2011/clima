@@ -127,6 +127,12 @@ Weather = (function(){
             urlForecast : "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "&lang=es",
             isPreview: true
         };
+        /*
+        settings = {
+            urlWeather : "http://api.openweathermap.org/data/2.5/weather?q=" + city + "PR&APPID=45868ac96f70e10a01988232b0ad6be8&lang=es",
+            urlForecast : "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + city + "PR&APPID=45868ac96f70e10a01988232b0ad6be8&lang=es",
+            isPreview: true
+        };*/
         ciudad = city;
 
         consultWeatherData();
@@ -440,7 +446,7 @@ Weather = (function(){
             if (day > 0){
                 var date = new Date(data.list[day].dt * 1000);
 
-                if (day == 1){
+                if (day == 1){  
                     bodyClassExtended = getBodyClass(data.list[day].weather[0].icon);
                 }
                 $('#forecast-image-' + day).find('object').remove();
